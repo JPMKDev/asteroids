@@ -17,6 +17,7 @@ def main():
                 return
         screen.fill("black")
         p1.draw(screen)
+        p1.update(dt)
         pygame.display.flip()
 
         #60fps
