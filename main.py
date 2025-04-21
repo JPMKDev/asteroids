@@ -9,15 +9,19 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}\nScreen height: {SCREEN_HEIGHT}")
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
-    p1 = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     dt = 0
+    updateables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+    Player.containers = (updateables, drawables)
+    p1 = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
-        p1.draw(screen)
-        p1.update(dt)
+        for drawable in drawables:
+            drawable.draw(screen)
+        updateables.update(dt)
         pygame.display.flip()
 
         #60fps
