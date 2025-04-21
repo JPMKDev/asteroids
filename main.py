@@ -1,4 +1,3 @@
-import time
 import pygame
 from constants import *
 from player import Player
@@ -28,6 +27,10 @@ def main():
         for drawable in drawables:
             drawable.draw(screen)
         updateables.update(dt)
+        for asteroid in asteroids:
+            if asteroid.is_colliding(p1):
+                print("Game over!")
+                return
         pygame.display.flip()
 
         #60fps
