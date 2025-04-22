@@ -35,6 +35,10 @@ def main():
             if asteroid.is_colliding(p1):
                 print("Game over!")
                 return
+            for shot in shots:
+                if asteroid.is_colliding(shot):
+                    asteroid.kill()
+                    shot.kill()
         pygame.display.flip()
 
         #60fps
